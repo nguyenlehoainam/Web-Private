@@ -1,0 +1,6 @@
+button {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  transition: all 0.25s;
+}
