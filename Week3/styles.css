@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  text-decoration: none;
+}
+ul,
+ol {
+  list-style: none;
+}
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+}
+button {
+  cursor: pointer;
+}
+.the {
+  width: 800px;
+  height: 800px;
+}
+.the-con {
+  width: 800px;
+  height: 800px;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8myKkDvF9Q2PLxTZQRSUMtcSphhcEnCK0UA&s");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 36px;
+  padding: 36px;
+  border: 10px solid red;
+}
+button {
+  font-size: 36px;
+
+  margin-top: 200px;
+  padding: 10px 20px 30px 40px;
+}
+body {
+  font-size: 100px;
+}

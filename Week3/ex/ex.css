@@ -1,0 +1,67 @@
+* {
+  /* Xóa margin, padding và border mặc định */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  text-decoration: none;
+}
+ul,
+ol {
+  list-style: none;
+}
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+}
+button {
+  cursor: pointer;
+}
+.card {
+  width: 360px;
+  background-color: #ffffff;
+  margin: auto;
+  margin-top: 120px;
+  border-radius: 16px;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  background-color: #a0d9ff;
+}
+.desciption {
+  padding: 20px;
+}
+.name {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.job {
+  color: rgb(145, 145, 145);
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+.platform {
+  font-size: 26px;
+  color: rgb(254, 43, 43);
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+button {
+  font-size: 24px;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: rgb(0, 131, 218);
+  border-radius: 12px;
+}
