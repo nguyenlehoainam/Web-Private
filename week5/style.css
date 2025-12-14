@@ -1,0 +1,128 @@
+* {
+  /* Xóa margin, padding và border mặc định */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  text-decoration: none;
+}
+ul,
+ol {
+  list-style: none;
+}
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+}
+button {
+  cursor: pointer;
+}
+
+:root {
+  --color-primary: #e98f45;
+  --color-primary-light: #fce0d4;
+  --color-secondary: #2b2a29;
+  --color-accent: #ebf5fe;
+  --color-cta-bg: #f0715f;
+  --color-green: #8cc63e;
+  --color-text: #333333;
+  --color-text-light: #ffffff;
+  --color-border: #eeeeee;
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "Roboto", sans-serif;
+  --container-width: 1200px;
+  --container-padding: 0 5%;
+}
+body {
+  font-family: var(--font-body);
+}
+ul {
+  list-style: none;
+}
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--container-padding);
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--color-text);
+}
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+}
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.nav-actions .fa-search {
+  font-size: 1.1rem;
+  color: var(--color-text);
+  cursor: pointer;
+}
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-text-light);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  text-align: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* font-size: 0.8rem; */
+  letter-spacing: 0.5px;
+}
+
+.nav-links a {
+  color: #555;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+  color: var(--color-primary);
+}
+
+.nav-links a.active::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--color-primary);
+  position: absolute;
+  bottom: -1px; /* Just below the padding */
+}

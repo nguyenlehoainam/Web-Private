@@ -1,0 +1,58 @@
+.main-layout {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  color: #333;
+  font-size: var(--font-size-body);
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+:root {
+  --font-size-h1: 2.25rem; /* 36px */
+  --font-size-h2: 1.625rem; /* 26px */
+  --font-size-body: 1rem; /* 16px */
+  --font-size-small: 0.875rem; /* 14px */
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  color: #111;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  color: #111;
+  line-height: 1.3;
+  font-weight: 400;
+}
+
+small {
+  font-size: var(--font-size-small);
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. LOGIC RESPONSIVE: ĐỊNH NGHĨA LẠI BIẾN TRONG MEDIA QUERY         */
+/* ------------------------------------------------------------------ */
+
+/* --- Dành cho máy tính bảng (Tablet) và lớn hơn --- */
+@media (width >= 768px) {
+  :root {
+    /* Chúng ta chỉ cần định nghĩa lại giá trị cho các biến cần thay đổi */
+    --font-size-h1: 3rem; /* 48px */
+    --font-size-h2: 1.875rem; /* 30px */
+    --font-size-body: 1.125rem; /* 18px */
+  }
+}
+
+/* --- Dành cho máy tính để bàn (Desktop) và lớn hơn --- */
+@media (width >= 1024px) {
+  :root {
+    /* Cập nhật giá trị một lần nữa cho màn hình lớn */
+    --font-size-h1: 4rem; /* 64px */
+    --font-size-h2: 2.25rem; /* 36px */
+    --font-size-body: 1.2rem; /* 19.2px */
+    --font-size-small: 1rem; /* 16px */
+  }
+}

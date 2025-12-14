@@ -1,0 +1,157 @@
+:root {
+  --color-primary: #e98f45;
+  --color-primary-light: #fce0d4;
+  --color-secondary: #2b2a29;
+  --color-accent: #ebf5fe;
+  --color-cta-bg: #f0715f;
+  --color-green: #8cc63e;
+  --color-text: #333333;
+  --color-text-light: #ffffff;
+  --color-border: #eeeeee;
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "Roboto", sans-serif;
+  --container-width: 1200px;
+  --container-padding: 0 5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: #ffffff;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+h2 {
+  font-size: 2.5rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--container-padding);
+}
+
+section {
+  padding: 4rem 0;
+}
+
+/* === COMPONENTS === */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  text-align: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+}
+.btn-primary:hover {
+  background-color: #d67c33;
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  color: var(--color-text-light);
+}
+.btn-secondary:hover {
+  background-color: #444;
+}
+
+.btn-outline-dark {
+  background-color: transparent;
+  color: var(--color-text);
+  border-color: #ddd;
+}
+.btn-outline-dark:hover {
+  background-color: var(--color-text);
+  color: var(--color-text-light);
+  border-color: var(--color-text);
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+  background-color: var(--color-primary-light);
+  color: var(--color-primary);
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.tag-light {
+  background-color: var(--color-text-light);
+  color: var(--color-cta-bg);
+}
+
+.badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: var(--color-green);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  border: 3px solid white;
+}
