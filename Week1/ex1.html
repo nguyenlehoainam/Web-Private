@@ -3,13 +3,676 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="ex1.css" />
+    <title>Gradient Frame - Portfolio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      /* =========================================
+           1. DESIGN TOKENS (CSS Variables)
+           ========================================= */
+      :root {
+        /* 🎨 Color Palette */
+        --bg-main: #ffffff;
+        --bg-alt: #f8fafc;
+        --text-main: #0f172a;
+        --text-muted: #64748b;
+        --primary: #2f6bff;
+        --primary-dark: #1d4ed8;
+        --primary-light: #eff6ff; /* very light blue for backgrounds */
+        --border: #e2e8f0;
+
+        /* 📐 Layout */
+        --container-width: 1280px;
+        --radius-sm: 6px;
+        --radius-md: 8px;
+        --radius-lg: 12px;
+        --radius-xl: 1rem;
+
+        /* 🌑 Shadows */
+        --shadow-subtle: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        --shadow-card: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+          0 1px 2px -1px rgba(0, 0, 0, 0.1);
+        --shadow-floating: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -4px rgba(0, 0, 0, 0.1);
+      }
+
+      /* =========================================
+           2. RESET & BASE
+           ========================================= */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg-main);
+        color: var(--text-main);
+        font-family: "Inter", sans-serif;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-weight: 800; /* Heavy weight per spec */
+        color: var(--text-main);
+        line-height: 1.1;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.2s;
+      }
+      ul {
+        list-style: none;
+      }
+      button {
+        font-family: inherit;
+      }
+
+      /* =========================================
+           3. UTILITIES
+           ========================================= */
+      .container {
+        width: 100%;
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+
+      .flex-center {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* =========================================
+           4. COMPONENTS
+           ========================================= */
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.875rem 2rem;
+        font-weight: 700;
+        border-radius: var(--radius-md);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        gap: 0.5rem;
+        font-size: 1rem;
+      }
+
+      .btn-primary {
+        background-color: var(--primary);
+        color: white;
+        border: 1px solid transparent;
+        box-shadow: var(--shadow-subtle);
+      }
+      .btn-primary:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        background-color: white;
+        color: #334155;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-subtle);
+      }
+      .btn-secondary:hover {
+        background-color: var(--bg-alt);
+      }
+
+      .btn-ghost {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+      }
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* Navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        z-index: 100;
+      }
+
+      .navbar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 800;
+        font-size: 1.25rem;
+        letter-spacing: -0.02em;
+      }
+
+      .logo-box {
+        width: 36px;
+        height: 36px;
+        background: var(--primary);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      .nav-links {
+        display: none;
+        gap: 2rem;
+        align-items: center;
+      }
+      @media (min-width: 768px) {
+        .nav-links {
+          display: flex;
+        }
+      }
+
+      .nav-item {
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+      .nav-item:hover {
+        color: var(--primary);
+      }
+
+      /* Hero */
+      .hero {
+        padding-top: 160px;
+        padding-bottom: 100px;
+        text-align: center;
+      }
+
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 6px 16px;
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        border-radius: 99px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1.5rem;
+      }
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--primary);
+        border-radius: 50%;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.03em;
+      }
+      .hero h1 span {
+        color: var(--primary);
+      }
+      @media (min-width: 768px) {
+        .hero h1 {
+          font-size: 4rem;
+        }
+      }
+
+      .hero p {
+        font-size: 1.125rem;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto 2.5rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      /* Hero Visualization Grid */
+      .grid-preview {
+        margin-top: 5rem;
+        position: relative;
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .grid-frame {
+        aspect-ratio: 16/9;
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-subtle);
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1rem;
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+      }
+
+      .grid-col {
+        background: rgba(47, 107, 255, 0.05);
+        border: 1px dashed rgba(47, 107, 255, 0.2);
+        border-radius: 4px;
+        height: 100%;
+      }
+
+      .grid-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60%;
+        height: 60%;
+        background: var(--primary);
+        filter: blur(80px);
+        opacity: 0.15;
+        z-index: 1;
+        border-radius: 50%;
+      }
+
+      .preview-label {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--text-muted);
+        font-weight: 500;
+        background: white;
+        padding: 0.5rem 1rem;
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-subtle);
+      }
+
+      /* Features */
+      .features {
+        padding: 80px 0;
+        background: var(--bg-alt);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .features-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .features-header h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      .features-header p {
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      @media (min-width: 768px) {
+        .feature-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      .feature-card {
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        padding: 2rem;
+        transition: box-shadow 0.2s;
+      }
+      .feature-card:hover {
+        box-shadow: var(--shadow-floating);
+        border-color: transparent;
+      }
+
+      .icon-box {
+        width: 48px;
+        height: 48px;
+        background: var(--primary-light);
+        color: var(--primary);
+        border-radius: var(--radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+      }
+
+      .feature-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.75rem;
+      }
+      .feature-card p {
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      /* CTA Section */
+      .cta-section {
+        padding: 80px 0;
+      }
+      .cta-card {
+        background: linear-gradient(135deg, var(--primary) 0%, #1e4bb8 100%);
+        border-radius: var(--radius-xl);
+        padding: 4rem 2rem;
+        text-align: center;
+        color: white;
+        max-width: 900px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-floating);
+      }
+
+      .cta-content {
+        position: relative;
+        z-index: 2;
+      }
+      .cta-card h2 {
+        color: white;
+        margin-bottom: 1rem;
+        font-size: 2rem;
+      }
+      .cta-card p {
+        color: #dbeafe;
+        margin-bottom: 2rem;
+        font-size: 1.125rem;
+      }
+
+      /* Footer */
+      .footer {
+        padding-top: 4rem;
+        padding-bottom: 2rem;
+        border-top: 1px solid var(--border);
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+      @media (min-width: 768px) {
+        .footer-grid {
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+        }
+      }
+
+      .footer h4 {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+      }
+      .footer ul li {
+        margin-bottom: 0.75rem;
+      }
+      .footer a {
+        color: var(--text-muted);
+        font-size: 0.875rem;
+      }
+      .footer a:hover {
+        color: var(--primary);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid var(--bg-alt);
+        padding-top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        color: #94a3b8;
+        font-size: 0.875rem;
+        text-align: center;
+      }
+      @media (min-width: 768px) {
+        .footer-bottom {
+          flex-direction: row;
+          justify-content: space-between;
+          text-align: left;
+        }
+      }
+    </style>
   </head>
   <body>
-    <button>xin chao</button>
-    <h1>Hello world 1</h1>
-    <h2>hellooo</h2>
-    <script src="ex1.js"></script>
+    <nav class="navbar">
+      <div class="container navbar-content">
+        <a href="#" class="logo">
+          <div class="logo-box">
+            <i data-lucide="layout"></i>
+          </div>
+          GradientFrame
+        </a>
+
+        <div class="nav-links">
+          <a href="#work" class="nav-item">Work</a>
+          <a href="#services" class="nav-item">Services</a>
+          <a href="#about" class="nav-item">About</a>
+          <button
+            class="btn btn-primary"
+            style="padding: 0.5rem 1.25rem; font-size: 0.9rem"
+          >
+            Book a Call
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="container">
+        <div class="status-badge">
+          <div class="status-dot"></div>
+          Available for new projects
+        </div>
+
+        <h1>
+          Building digital trust through<br />
+          <span>structured design.</span>
+        </h1>
+
+        <p>
+          I help SaaS companies build professional, scalable, and pixel-perfect
+          interfaces that convert users into loyal customers.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary">
+            View Portfolio
+            <i data-lucide="arrow-right" size="18"></i>
+          </button>
+          <button class="btn btn-secondary">Read Case Studies</button>
+        </div>
+
+        <div class="grid-preview">
+          <div class="grid-glow"></div>
+          <div class="grid-frame">
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
+            <div class="grid-col"></div>
+            <div class="preview-label">High-Fidelity Dashboard Preview</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="services">
+      <div class="container">
+        <div class="features-header">
+          <h2>Core Design Principles</h2>
+          <p>
+            Every project is built on a foundation of reliability and clarity,
+            ensuring your product scales without technical debt.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="icon-box">
+              <i data-lucide="shield"></i>
+            </div>
+            <h3>Trustworthy Logic</h3>
+            <p>
+              Clean code and accessible patterns that users trust instinctively.
+              No dark patterns, just transparent functionality.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon-box">
+              <i data-lucide="layers"></i>
+            </div>
+            <h3>Structured Systems</h3>
+            <p>
+              Built on a strict 12-column grid with consistent spacing tokens.
+              Scalable design systems that grow with your business.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon-box">
+              <i data-lucide="zap"></i>
+            </div>
+            <h3>Professional Speed</h3>
+            <p>
+              Optimized assets and minimal reflows. We prioritize performance
+              metrics that impact your bottom line.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-card">
+          <div class="cta-content">
+            <h2>Ready to frame your next big idea?</h2>
+            <p>
+              Let's collaborate to create a structured, professional web
+              presence.
+            </p>
+            <div class="hero-actions">
+              <button
+                class="btn btn-secondary"
+                style="color: var(--primary); border: none"
+              >
+                Start a Project
+              </button>
+              <button class="btn btn-ghost">Contact Me</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="logo" style="margin-bottom: 1rem">
+              <div class="logo-box" style="width: 24px; height: 24px">
+                <i data-lucide="layout" size="14"></i>
+              </div>
+              GradientFrame
+            </div>
+            <p
+              style="
+                color: var(--text-muted);
+                font-size: 0.9rem;
+                max-width: 250px;
+              "
+            >
+              Designing trust through structure and clarity.
+            </p>
+          </div>
+
+          <div>
+            <h4>Product</h4>
+            <ul>
+              <li><a href="#">Overview</a></li>
+              <li><a href="#">Features</a></li>
+              <li><a href="#">Solutions</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#">About</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4>Social</h4>
+            <ul>
+              <li><a href="#">Twitter</a></li>
+              <li><a href="#">LinkedIn</a></li>
+              <li><a href="#">GitHub</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2024 Gradient Frame Design. All rights reserved.</p>
+          <div style="display: flex; gap: 1.5rem; justify-content: center">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      lucide.createIcons();
+    </script>
   </body>
 </html>

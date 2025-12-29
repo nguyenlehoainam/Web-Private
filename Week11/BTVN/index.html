@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TechStore - Mua Sắm Trực Tuyến</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-inner">
+        <div class="logo">
+          <img class="logo-img" src="./assets/Logo.png" alt="" />
+        </div>
+        <div class="cart-badge-icon" onclick="scrollToCart()">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge" id="header-qty">0</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-container">
+      <section>
+        <div class="section-title">
+          <i class="fa-solid fa-store"></i> Danh sách sản phẩm
+        </div>
+        <div class="product-grid" id="product-list"></div>
+      </section>
+
+      <aside class="cart-sidebar" id="cart-area">
+        <div class="cart-header">Giỏ hàng của bạn</div>
+
+        <div class="cart-items-wrapper" id="cart-items"></div>
+
+        <div class="cart-footer">
+          <div class="total-row">
+            <span>Tổng tiền:</span>
+            <span class="total-val" id="cart-total">0 ₫</span>
+          </div>
+          <button class="checkout-btn" onclick="checkout()">
+            THANH TOÁN NGAY
+          </button>
+        </div>
+      </aside>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+</html>
