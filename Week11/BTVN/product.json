@@ -1,0 +1,124 @@
+[
+  {
+    "id": 1,
+    "name": "iPhone 15 Pro Max 256GB",
+    "category": "Điện thoại",
+    "price": 34990000,
+    "img": "https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-thumbnew-600x600.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Samsung Galaxy S24 Ultra",
+    "category": "Điện thoại",
+    "price": 31990000,
+    "img": "https://cdn.tgdd.vn/Products/Images/42/307174/samsung-galaxy-s24-ultra-grey-thumbnew-600x600.jpg"
+  },
+  {
+    "id": 3,
+    "name": "MacBook Air M2 13 inch",
+    "category": "Laptop",
+    "price": 26990000,
+    "img": "https://apple.ngocnguyen.vn/cdn/images/202311/goods_img/macbook-air-13-inch-2022-m2-chinh-hang-G15523-1699870885486.jpg"
+  },
+  {
+    "id": 4,
+    "name": "iPad Air 5 M1 WiFi 64GB",
+    "category": "Tablet",
+    "price": 14990000,
+    "img": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQ5GZtiYrwH1MUxNMj4yUvxI9-3Ms8EfW9UPg9oSQBObI7zDwpB_MtgTixqadDEPLKMJQgyNMuLxjE7xZirEFUo5F3ftQic9Q2BxuBXZq2uzEJDDZj6dpB0WSGYSRFM3XIQIylXxw&usqp=CAc"
+  },
+  {
+    "id": 5,
+    "name": "Tai nghe AirPods Pro 2",
+    "category": "Phụ kiện",
+    "price": 5990000,
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPHHilYftBfqkY5URHgsp3rmIaopGhypO0PQ&s"
+  },
+  {
+    "id": 6,
+    "name": "Loa Bluetooth JBL Flip 6",
+    "category": "Âm thanh",
+    "price": 2990000,
+    "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMba8cyiQ5zQPaiSf4fS7lobIBLsb7cLRPcA&s"
+  },
+  {
+    "id": 7,
+    "name": "Ghê Gaming xpanse",
+    "category": "Ghế",
+    "price": 3990000,
+    "img": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRmShhkGbmvfeKhPionXZ8l48X1yEoZUApZJKuIxtH6N_24Et9Wq6X5VF4M2Y3nZBEq_IpdllunrkxJ479nPRTBvqg4rkYTVqhMoUWGYIJwUujbRRpBLqiMhLcZ6xrj-kajioIQ7w&usqp=CAc"
+  },
+  {
+    "id": 8,
+    "name": "Màn Hình led Samsung 24inch",
+    "category": "Màn Hình",
+    "price": 3990000,
+    "img": "https://images.samsung.com/is/image/samsung/p6pim/vn/ls24f350fhexxv/gallery/vn-led-sf350-ls24f350fhexxv-538629749?$Q90_1248_936_F_PNG$"
+  },
+  {
+    "id": 9,
+    "name": "Bàn phím cơ Aula f80",
+    "category": "Bàn Phím",
+    "price": 2990000,
+    "img": "https://phucanhcdn.com/media/product/55673_ban_phim_co_aula_3_mode_aula_f87_pro_black_gradient_5.jpg"
+  }
+]
+[
+// 1. KHỞI TẠO DỮ LIỆU
+// const products = [
+// Các bạn tự điền data mẫu vào đây (ít nhất 5 sản phẩm)
+// Cấu trúc: { id, name, category, price, img }
+// ];
+
+// let cart = [];  Mảng chứa các item trong giỏ hàng
+
+// 2. CÁC HÀM TIỆN ÍCH (HELPER)
+// const formatMoney = (amount) => {
+// TODO: Viết hàm format tiền tệ VNĐ
+// };
+
+// 3. CÁC HÀM RENDER GIAO DIỆN
+// const renderProducts = () => {
+// TODO:
+// 1. Lấy thẻ div chứa list sản phẩm
+// 2. Map qua mảng products để tạo string HTML
+// 3. Gán vào innerHTML
+// Lưu ý: Nút thêm giỏ hàng phải gọi addToCart(id)
+// };
+
+// const renderCart = () => {
+// TODO:
+// 1. Tính tổng số lượng item để hiển thị lên badge
+// 2. Kiểm tra nếu cart rỗng -> hiển thị ảnh giỏ hàng trống
+// 3. Nếu có item -> render list item và tính tổng tiền
+// };
+
+// 4. CÁC HÀM XỬ LÝ LOGIC (CORE)
+// const addToCart = (id) => {
+// TODO:
+// 1. Tìm sản phẩm trong list products dựa vào id
+// 2. Kiểm tra sản phẩm này đã có trong cart chưa?
+//    - Nếu có: Tăng quantity lên 1
+//    - Nếu chưa: Copy sản phẩm đó, thêm property quantity: 1, rồi push vào cart
+// 3. Gọi lại renderCart()
+// };
+
+// const updateQty = (id, change) => {
+// TODO:
+// Tìm item trong cart, cộng/trừ quantity theo biến change
+// Đừng quên kiểm tra không cho quantity < 1
+// Render lại cart
+// };
+
+// const removeItem = (id) => {
+// TODO: Confirm xác nhận xóa, sau đó filter mảng cart để loại bỏ id này
+// };
+
+// const checkout = () => {
+// TODO: Alert thông báo thanh toán và clear giỏ hàng
+// };
+
+// 5. KHỞI CHẠY
+// renderProducts();
+// renderCart();
+]
