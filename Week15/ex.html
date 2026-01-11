@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Barista</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #ffffff;
+      width: 100%;
+      max-width: 400px;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-top: 0;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #555;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="text"]:focus,
+    select:focus {
+      border-color: #4a90e2;
+    }
+    .checkbox-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      background: #fafafa;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #eee;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      cursor: pointer;
+      color: #444;
+    }
+
+    .checkbox-item input {
+      margin-right: 6px;
+      width: 16px;
+      height: 16px;
+      accent-color: #4a90e2;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #357abd;
+    }
+    #output-area {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #f8f9fa;
+      border-left: 4px solid #4a90e2;
+      border-radius: 4px;
+      display: none;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    #receipt {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .status {
+      color: #d97706;
+      font-style: italic;
+    }
+    .done {
+      color: #059669;
+      font-weight: bold;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h2>Barista</h2>
+
+      <div class="form-group">
+        <label>Tên khách hàng:</label>
+        <input
+          type="text"
+          id="customerName"
+          placeholder="Nhập tên của bạn..."
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Chọn món:</label>
+        <select id="drinkType">
+          <option value="Trà Xanh">Trà Xanh</option>
+          <option value="Hồng Trà">Hồng Trà</option>
+          <option value="Trà Sữa">Trà Sữa</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Độ ngọt (Ghi đè mặc định 50%):</label>
+        <select id="sweetness">
+          <option value="50%">50% (Mặc định)</option>
+          <option value="0%">0% (Không đường)</option>
+          <option value="100%">100% (Nhiều đường)</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Topping (Chọn nhiều):</label>
+        <div class="checkbox-group">
+          <label class="checkbox-item"
+            ><input type="checkbox" value="Trân châu" class="topping-chk" />
+            Trân châu</label
+          >
+          <label class="checkbox-item"
+            ><input type="checkbox" value="Pudding" class="topping-chk" />
+            Pudding</label
+          >
+          <label class="checkbox-item"
+            ><input type="checkbox" value="Thạch dừa" class="topping-chk" />
+            Thạch dừa</label
+          >
+        </div>
+      </div>
+
+      <button onclick="handleOrder()">Đặt Món Ngay</button>
+
+      <div id="output-area">
+        <div id="receipt"></div>
+        <div id="status"></div>
+      </div>
+    </div>
+
+    <script>
+      const defaultRecipe = {
+        tea: "Trà Xanh",
+        sweetness: "50%",
+        ice: "50%",
+        price: 25000,
+      };
+
+      function handleOrder() {
+        const nameInput =
+          document.getElementById("customerName").value || "Khách ẩn danh";
+        const drinkInput = document.getElementById("drinkType").value;
+        const sweetnessInput = document.getElementById("sweetness").value;
+        const checkboxes = document.querySelectorAll(".topping-chk:checked");
+        const selectedToppings = Array.from(checkboxes).map((chk) => chk.value);
+        const customerOrder = {
+          customerName: nameInput,
+          tea: drinkInput,
+          sweetness: sweetnessInput,
+          price: drinkInput !== "Trà Xanh" ? 30000 : 25000,
+        };
+
+        const finalOrder = { ...defaultRecipe, ...customerOrder };
+
+        const { customerName, tea, price, sweetness } = finalOrder;
+        const outputArea = document.getElementById("output-area");
+        const receiptDiv = document.getElementById("receipt");
+        const statusDiv = document.getElementById("status");
+
+        outputArea.style.display = "block";
+        receiptDiv.innerHTML = `
+            <strong> HÓA ĐƠN:</strong><br>
+            Khách hàng: ${customerName}<br>
+            Món: ${tea} (Đường: ${sweetness})<br>
+            Tổng tiền: ${price}đ
+            <hr style="border: 0.5px solid #555">
+        `;
+        makeDrink(tea, ...selectedToppings);
+      }
+
+      const makeDrink = (drinkName, ...toppings) => {
+        const statusDiv = document.getElementById("status");
+
+        const toppingText =
+          toppings.length > 0 ? `với ${toppings.join(", ")}` : "không topping";
+
+        statusDiv.innerHTML = `<span class="status"> Đang pha chế ${drinkName} ${toppingText}... (Vui lòng chờ 3s)</span>`;
+        statusDiv.className = "";
+
+        setTimeout(() => {
+          statusDiv.innerHTML = `<span class="done"> ${drinkName} đã xong! Mời ${
+            document.getElementById("customerName").value || "bạn"
+          } nhận đồ.</span>`;
+        }, 3000);
+      };
+    </script>
+  </body>
+</html>
